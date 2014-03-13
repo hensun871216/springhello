@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:aop="http://www.springframework.org/schema/aop"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+ ">
+ 	
+ 	<bean id="minstrel" class="hensun.SpringHello.Minstrel" >
+ 	</bean>
+ 	
+ 	<aop:config>
+ 		<aop:aspect ref="minstrel">
+ 			<aop:pointcut expression="execution(* *.sayGreeting(..)) and target(bean)" id="questPointCut"/>
+ 			<aop:before method="songBefore" pointcut-ref="questPointCut" arg-names="bean"/>
+ 			<aop:after-returning method="songafter" pointcut-ref="questPointCut" arg-names="bean"/>
+ 		</aop:aspect>
+ 	</aop:config>
+ 	<aop:config>
+ 		<aop:aspect ref="audience">
+ 			<aop:pointcut expression="execution(* *.perform(..))" id="performPointCut" />
+ 			<aop:before method="takeSeats" pointcut-ref="performPointCut"/>
+ 			<aop:before method="turnOffCellPhone" pointcut-ref="performPointCut"/>
+ 			<aop:after method="applaud" pointcut-ref="performPointCut"/>
+ 		</aop:aspect>
+ 	</aop:config>
+ 	<bean id="greetingService" class="hensun.SpringHello.GreetingServiceIml">
+ 		<property name="greeting" value="hensun"/>
+ 	</bean>
+ 	<bean id="app" class="hensun.SpringHello.App">
+ 		<property name="greetingService" ref="greetingService" />
+ 	</bean>
+ 	<bean id="audience" class="hensun.SpringHello.Audience">
+ 	</bean>
+ 	
+ 	
+ 	<bean id="insttuments" class="hensun.SpringHello.Instruments">
+ 	</bean>
+ 	
+ 	<bean id="audienceAround" class="hensun.SpringHello.AudienceAround"/>
+ 	<aop:aspectj-autoproxy proxy-target-class="true" />
+ 	
+ 	<bean id="critiEngine" class="hensun.SpringHello.CritiEngineImp">
+ 		<property name="pool">
+ 			<list>
+ 				<value>'a'</value>
+ 				<value>'b'</value>
+ 				<value>'c'</value>
+ 				<value>'d'</value>
+ 				<value>'e'</value>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	
+ 	<bean id="judageAspect" class="hensun.SpringHello.JudageAspect" factory-method="aspectOf">
+ 		<property name="critiEngine" ref="critiEngine"/>
+ 	</bean>
+</beans>

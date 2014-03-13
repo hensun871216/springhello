@@ -1,0 +1,8 @@
+2014-03-07 05:33:44:INFO main hensun.SpringHello.Log4jTest - Here is INFO message
+2014-03-07 05:33:44:WARN main hensun.SpringHello.Log4jTest - Here is WARN message
+2014-03-07 05:33:44:ERROR main hensun.SpringHello.Log4jTest - Here is ERROR message
+2014-03-07 05:33:44:FATAL main hensun.SpringHello.Log4jTest - Here is FATAL message
+2014-03-07 05:35:30:INFO main hensun.SpringHello.Log4jTest - Here is INFO message
+2014-03-07 05:35:31:WARN main hensun.SpringHello.Log4jTest - Here is WARN message
+2014-03-07 05:35:31:ERROR main hensun.SpringHello.Log4jTest - Here is ERROR message
+2014-03-07 05:35:31:FATAL main hensun.SpringHello.Log4jTest - Here is FATAL message
